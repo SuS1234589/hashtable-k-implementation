@@ -17,7 +17,6 @@ template <typename K, typename V, typename Hash = std::hash<K>>
 class Hashtable {
   std::vector<Bucket<K, V> *> table;
   size_t bucket_count;
-  size_t element_count = 0;
   size_t bucket_element_count;
   Hash hasher; // lets see if we can code our own hash function
 
@@ -102,10 +101,6 @@ public:
     }
     return 0;
   }
-
-
-
-
 
 };
 
