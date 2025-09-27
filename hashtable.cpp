@@ -1,7 +1,4 @@
 #include <algorithm>
-#include <iostream>
-#include <list>
-#include <string>
 #include <utility>
 #include <vector>
 
@@ -21,10 +18,9 @@ class Hashtable {
   Hash hasher; // lets see if we can code our own hash function
 
   size_t get_index(const K &key) const { return hasher(key) % bucket_count; }
-  Bucket<K,V>* get_head(const K& key){
+  Bucket<K, V> *get_head(const K &key) {
     size_t index = hasher(key) % bucket_count;
     return table[index];
-
   }
 
 public:
@@ -38,61 +34,52 @@ public:
     }
   }
 
-  ~Hashtable(){
-    for(auto it: table) delete it;
+  ~Hashtable() {
+    for (auto it : table)
+      delete it;
   }
 
   int insert(const K &key, const V &value) {
-    Bucket<K,V>* bucket = get_head(key);
+    Bucket<K, V> *bucket = get_head(key);
     // this means the bucket is emptyy
-    if(!bucket){
-      bucket = new Bucket<K,V>(bucket_element_count);
+    if (!bucket) {
+      bucket = new Bucket<K, V>(bucket_element_count);
       bucket->elements.emplace_back(key, value);
       return 1;
     }
-    // this is the case where the bucket is not empty 
-    while(bucket){
-      if(bucket->elements.size() < bucket_element_count){
+    // this is the case where the bucket is not empty
+    while (bucket) {
+      if (bucket->elements.size() < bucket_element_count) {
         bucket->elements.emplace_back(key, value);
         return 1;
       }
-      if(!bucket->next) break;
+      if (!bucket->next)
+        break;
       bucket = bucket->next;
-      // now if all existing buckets are full we do this instead 
+      // now if all existing buckets are full we do this instead
     }
-    bucket->next = new Bucket<K,V>(bucket_element_count);
+    bucket->next = new Bucket<K, V>(bucket_element_count);
     bucket->next->elements.emplace_back(key, value);
     return 1;
-    
   }
 
   const V *find(const K &key) const {
-    for(Bucket<K,V>* bucket = get_head(key); bucket;bucket = bucket->next){
-      auto it = std::find_if(bucket->elements.begin(), bucket->elements.end(),[&key](const auto& pair) {return pair.first == key; });
-      if(it != bucket->elements.end()) return &it->second;
+    for (Bucket<K, V> *bucket = get_head(key); bucket; bucket = bucket->next) {
+      auto it =
+          std::find_if(bucket->elements.begin(), bucket->elements.end(),
+                       [&key](const auto &pair) { return pair.first == key; });
+      if (it != bucket->elements.end())
+        return &it->second;
     }
     return nullptr;
   }
 
-  int erase(const K& key, const V& value){
-    Bucket<K,V>* bucket = get_head(key);
-    while(bucket){
-      for(auto it = bucket->elements.begin(); it != bucket->elements.end(), it++){
-        if(it->first() == key && it->second() == value){
-           bucket->elements.erase(it);
-           return 1;
-        }
-      }
-      bucket = bucket->next;
-    }
-    return 0;
-  }
-
-  int remove(const K& key){
-    Bucket<K,V>* bucket = get_head(key);
-    while(bucket){
-      for(auto it = bucket->elements.begin(); it != bucket->elements.end(); it++){
-        if(it->first() == key){
+  int erase(const K &key, const V &value) {
+    Bucket<K, V> *bucket = get_head(key);
+    while (bucket) {
+      for (auto it = bucket->elements.begin();
+           it != bucket->elements.end(); it++) {
+        if (it->first() == key && it->second() == value) {
           bucket->elements.erase(it);
           return 1;
         }
@@ -102,6 +89,20 @@ public:
     return 0;
   }
 
+  int remove(const K &key) {
+    Bucket<K, V> *bucket = get_head(key);
+    while (bucket) {
+      for (auto it = bucket->elements.begin(); it != bucket->elements.end();
+           it++) {
+        if (it->first() == key) {
+          bucket->elements.erase(it);
+          return 1;
+        }
+      }
+      bucket = bucket->next;
+    }
+    return 0;
+  }
 };
 
 int main() { return 0; }
