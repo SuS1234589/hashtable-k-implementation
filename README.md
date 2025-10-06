@@ -24,12 +24,24 @@ To compile and run the test cases, do the following
 g++ -std=c++17 test_drive.cpp -o test_drive
 ./test_drive
 ```
+Benchmark Results
+-------------------------------------
+Entries: 1,000,000
+  CustomHashtable Insert:      1377 ms
+  std::unordered_map Insert:   1544 ms
+  CustomHashtable Lookup:      220 ms
+  std::unordered_map Lookup:   263 ms
+  Mismatches: 0  Missed Keys: 0
 
-After this commmand-line will print out the benchmark for the 2 programs. 
-Here are the results of running 1 million, 10 million and 100 million test cases. 
+Entries: 10,000,000
+  CustomHashtable Insert:      13,739 ms
+  std::unordered_map Insert:   16,409 ms
+  CustomHashtable Lookup:      3,350 ms
+  std::unordered_map Lookup:   3,328 ms
+  Mismatches: 0  Missed Keys: 0
 
-Entries      |  CustomHashtable Insert (ms)  |  std::unordered_map Insert (ms)  |  CustomHashtable Lookup (ms)  |  std::unordered_map Lookup (ms)  |  Mismatches  |  Missed Keys
--------------+-------------------------------+----------------------------------+-------------------------------+----------------------------------+--------------+-------------
-1,000,000    |  1377                         |  1544                            |  220                          |  263                             |  0           |  0          
-10,000,000   |  13739                        |  16409                           |  3350                         |  3328                            |  0           |  0          
-100,000,000  |  674,605 (insert only)        |  —                               |  [unmeasured: impractical]    |  —                               |  —           |  —          
+Entries: 100,000,000
+  CustomHashtable Insert:      674,605 ms
+  std::unordered_map: Not measured (test interrupted)
+  Lookup: Not measured (impractical for current implementation)
+
