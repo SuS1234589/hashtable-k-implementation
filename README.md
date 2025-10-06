@@ -1,7 +1,8 @@
 # Custom Hashtable Implementation 
 This project is a custom implememtation of a hashtable based on `std::unordered_maps`. This is a closed addressing implementation of a hashtable, where each bucket can hold upto k elements. This project also includes script for testing purposes and benchmarking the implementation with C++ `std::unordered_maps`. The scripts compare both with 1 million, 10 million and 100 million key-value pairs. 
 
-##Files
+Files
+------
 `hashtable.h`, `hashtable.cpp` – Custom hashtable implementation.
 
 `generator.cpp` – Generates synthetic test data (testdata.txt) with millions of key-value pairs.
@@ -10,7 +11,8 @@ This project is a custom implememtation of a hashtable based on `std::unordered_
 
 `reading.cpp` – (if used) For custom data reading tasks.
 
-##Compilation
+Compilation
+-------------
 Now to compile and run everything do the following: 
 ```
 g++ -std=c++17 generator.cpp -o generator
@@ -51,7 +53,8 @@ Entries: 100,000,000
   Lookup: Not measured (impractical for current implementation)
 ```
 
-##Conclusion 
+Conclusion 
+-----------
 This project demonstrates a custom hash table that, when parameterized appropriately, can match or even slightly outperform `std::unordered_map` for specific workloads—though with less generality and scalability. For extremely large datasets, further optimization is required for practical performance.
 
 I chose to create my custom hashtable with a bucket count equal to the number of elements inserted, which led to a very low load factor and almost no collisions. This maximized performance for lookup and insertion but used much more memory than typical hash tables. For real-world use, it’s common to use fewer buckets and a higher load factor to save space, but for benchmarking and demonstration, this setup clearly shows the impact of bucket count on speed.
