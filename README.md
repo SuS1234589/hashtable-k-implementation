@@ -46,3 +46,8 @@ Entries: 100,000,000
   std::unordered_map: Not measured (test interrupted)
   Lookup: Not measured (impractical for current implementation)
 ```
+
+##Conclusion 
+This project demonstrates a custom hash table that, when parameterized appropriately, can match or even slightly outperform `std::unordered_map` for specific workloads—though with less generality and scalability. For extremely large datasets, further optimization is required for practical performance.
+
+
