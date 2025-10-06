@@ -28,21 +28,25 @@ Benchmark Results
 -------------------------------------
 ```
 Entries: 1,000,000
-  CustomHashtable Insert:      1377 ms
-  std::unordered_map Insert:   1544 ms
-  CustomHashtable Lookup:      220 ms
-  std::unordered_map Lookup:   263 ms
+  CustomHashtable Insert:         1377 ms
+  std::unordered_map Insert:      1544 ms
+  CustomHashtable Load Factor:    3.99999e-06
+  std::unordered_map Load Factor: 0.607446
+  CustomHashtable Lookup:         220 ms
+  std::unordered_map Lookup:      263 ms
   Mismatches: 0  Missed Keys: 0
 
 Entries: 10,000,000
-  CustomHashtable Insert:      13,739 ms
-  std::unordered_map Insert:   16,409 ms
-  CustomHashtable Lookup:      3,350 ms
-  std::unordered_map Lookup:   3,328 ms
+  CustomHashtable Insert:         13,739 ms
+  std::unordered_map Insert:      16,409 ms
+  CustomHashtable Load Factor:    4e-07
+  std::unordered_map Load Factor: 0.759303
+  CustomHashtable Lookup:         3,350 ms
+  std::unordered_map Lookup:      3,328 ms
   Mismatches: 0  Missed Keys: 0
 
 Entries: 100,000,000
-  CustomHashtable Insert:      674,605 ms
+  CustomHashtable Insert:         674,605 ms
   std::unordered_map: Not measured (test interrupted)
   Lookup: Not measured (impractical for current implementation)
 ```
@@ -50,4 +54,4 @@ Entries: 100,000,000
 ##Conclusion 
 This project demonstrates a custom hash table that, when parameterized appropriately, can match or even slightly outperform `std::unordered_map` for specific workloads—though with less generality and scalability. For extremely large datasets, further optimization is required for practical performance.
 
-
+I chose to create my custom hashtable with a bucket count equal to the number of elements inserted, which led to a very low load factor and almost no collisions. This maximized performance for lookup and insertion but used much more memory than typical hash tables. For real-world use, it’s common to use fewer buckets and a higher load factor to save space, but for benchmarking and demonstration, this setup clearly shows the impact of bucket count on speed.

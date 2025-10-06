@@ -18,8 +18,6 @@ struct Bucket {
 
 template <typename K, typename V, typename Hash = std::hash<K>>
 class Hashtable {
-    size_t bucket_count;
-    size_t bucket_element_count;
     Hash hasher;
 
     size_t get_index(const K &key) { return hasher(key) % bucket_count; }
@@ -29,6 +27,8 @@ class Hashtable {
     }
 
 public:
+     size_t bucket_count;
+    size_t bucket_element_count;
      std::vector<Bucket<K, V> *> table;
 
     Hashtable(size_t buckets, size_t bucket_size, Hash h = Hash())

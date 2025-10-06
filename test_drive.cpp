@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
 
-    Hashtable<string, int> customTable(1000003, 4);
+    Hashtable<string, int> customTable(10000003, 4);
     unordered_map<string, int> stdTable;
     vector<string> keys;
     string line, key;
@@ -56,6 +56,17 @@ int main() {
     cout << "std::unordered_map Insertion: " << std_insert_ms << " ms" << endl;
 
     cout << "\nLoaded " << lineCount << " entries into both tables.\n";
+
+
+// Print load factor for custom table
+double loadFactor = double(customTable.bucket_element_count) / customTable.bucket_count;
+cout << "CustomHashtable Load Factor: " << loadFactor << endl;
+
+// Optionally, for std::unordered_map:
+double stdLoadFactor = double(stdTable.size()) / stdTable.bucket_count();
+cout << "std::unordered_map Load Factor: " << stdLoadFactor << endl;
+
+// --- Timing lookup, etc, goes here ---
 
     // --- Timing lookup: CustomHashtable for all keys ---
     auto custom_lookup_start = high_resolution_clock::now();
