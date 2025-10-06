@@ -26,6 +26,7 @@ g++ -std=c++17 test_drive.cpp -o test_drive
 ```
 Benchmark Results
 -------------------------------------
+```
 Entries: 1,000,000
   CustomHashtable Insert:      1377 ms
   std::unordered_map Insert:   1544 ms
@@ -44,4 +45,4 @@ Entries: 100,000,000
   CustomHashtable Insert:      674,605 ms
   std::unordered_map: Not measured (test interrupted)
   Lookup: Not measured (impractical for current implementation)
-
+```
