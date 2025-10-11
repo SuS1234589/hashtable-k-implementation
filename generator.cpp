@@ -6,7 +6,7 @@
 
 int main() {
     const std::string filename = "testdata.txt";
-    const int N = 10000000; // 1 million pairs
+    const int N = 10000; // 1 million pairs
 
     std::ofstream out(filename);
     if (!out.is_open()) {

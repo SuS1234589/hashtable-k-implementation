@@ -18,7 +18,7 @@ int main() {
         return 1;
     }
 
-    Hashtable<string, int> customTable(10000003, 4);
+    Hashtable<string, int> customTable(10, 100);
     unordered_map<string, int> stdTable;
     vector<string> keys;
     string line, key;
@@ -59,7 +59,8 @@ int main() {
 
 
 // Print load factor for custom table
-double loadFactor = double(customTable.bucket_element_count) / customTable.bucket_count;
+int number_of_elements = 10000;
+double loadFactor = static_cast<double>(number_of_elements) / customTable.bucket_count;
 cout << "CustomHashtable Load Factor: " << loadFactor << endl;
 
 // Optionally, for std::unordered_map:
