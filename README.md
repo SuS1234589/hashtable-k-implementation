@@ -59,4 +59,4 @@ Conclusion
 -----------
 This project demonstrates a custom hash table that, when parameterized appropriately, can match or even slightly outperform `std::unordered_map` for specific workloads—though with less generality and scalability. For extremely large datasets, further optimization is required for practical performance.
 
-I chose to create my custom hashtable with a bucket count equal to the number of elements inserted, which led to a very low load factor and almost no collisions. This maximized performance for lookup and insertion but used much more memory than typical hash tables. For real-world use, it’s common to use fewer buckets and a higher load factor to save space, but for benchmarking and demonstration, this setup clearly shows the impact of bucket count on speed.
+In the current state, the hashtable takes 10 buckets, where each bucket can hold upto 100 elements. The formula for a customa hashtable implementation load factor is number of elements / number of bucekts. Whenever the load factor is above 1 that means that there were collisions. The purpose of this testing was to stress the load factor and make it greater than 1. 
