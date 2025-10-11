@@ -28,6 +28,10 @@ To compile and run the test cases, do the following
 g++ -03 -std=c++17 test_drive.cpp -o test_drive
 ./test_drive
 ```
+The reason why the above commands are using `-02` and `-03` as these make the compiler transform the code to run faster. Running the generator command without `-02` should not make a difference. Howver if you are testing very large number of testcases, for example 1,000,000, then using `-03` is recommneded as it cuts down time by a significant amount. 
+Here is the time `test_drive` took wihtout `-03` = `4013013 ms` ~ `66 mins`
+Here is the time `test_drive` took with `-03` = `145776 ms` ~ `2 mins`
+As you can see that is a major difference in time. 
 
 After you are more familiar with the commands you can use `executable.sh` to test the hashtable.
 `./executable.sh`
