@@ -11,11 +11,13 @@ Files
 
 `reading.cpp` – (if used) For custom data reading tasks.
 
+`executable.sh` - contains all the commands to test the hashtbale. 
+
 Compilation
 -------------
 Now to compile and run everything do the following: 
 ```
-g++ -std=c++17 generator.cpp -o generator
+g++ -02 -std=c++17 generator.cpp -o generator
 ./generator
 ```
 
@@ -23,34 +25,34 @@ The above 2 lines will generate a `.txt` file that would contain all the key-val
 To compile and run the test cases, do the following 
 
 ```
-g++ -std=c++17 test_drive.cpp -o test_drive
+g++ -03 -std=c++17 test_drive.cpp -o test_drive
 ./test_drive
 ```
+
+After you are more familiar with the commands you can use `executable.sh` to test the hashtable.
+`./executable.sh`
+
+
 Benchmark Results
 -------------------------------------
 ```
+Entries: 100,000
+    CustomHashtable Insert: 17,252 ms
+    std::unordered_map Insert: 122 ms
+    CustomHashtable Load Factor: 10,000
+    std::unordered_map Load Factor: 0.972035
+    CustomHashtable Lookup: 17,629 ms
+    std::unordered_map Lookup: 18 ms
+    Mismatches: 0 Missed Keys: 0
+
 Entries: 1,000,000
-  CustomHashtable Insert:         1377 ms
-  std::unordered_map Insert:      1544 ms
-  CustomHashtable Load Factor:    3.99999e-06
-  std::unordered_map Load Factor: 0.607446
-  CustomHashtable Lookup:         220 ms
-  std::unordered_map Lookup:      263 ms
-  Mismatches: 0  Missed Keys: 0
-
-Entries: 10,000,000
-  CustomHashtable Insert:         13,739 ms
-  std::unordered_map Insert:      16,409 ms
-  CustomHashtable Load Factor:    4e-07
-  std::unordered_map Load Factor: 0.759303
-  CustomHashtable Lookup:         3,350 ms
-  std::unordered_map Lookup:      3,328 ms
-  Mismatches: 0  Missed Keys: 0
-
-Entries: 100,000,000
-  CustomHashtable Insert:         674,605 ms
-  std::unordered_map: Not measured (test interrupted)
-  Lookup: Not measured (impractical for current implementation)
+    CustomHashtable Insert: 145,776 ms
+    std::unordered_map Insert: 578 ms
+    CustomHashtable Load Factor: 100,000
+    std::unordered_map Load Factor: 0.607446
+    CustomHashtable Lookup: 144,274 ms
+    std::unordered_map Lookup: 76 ms
+    Mismatches: 0 Missed Keys: 0
 ```
 
 Conclusion 

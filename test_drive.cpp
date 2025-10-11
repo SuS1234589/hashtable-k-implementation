@@ -59,8 +59,7 @@ int main() {
 
 
 // Print load factor for custom table
-int number_of_elements = 10000;
-double loadFactor = static_cast<double>(number_of_elements) / customTable.bucket_count;
+double loadFactor = static_cast<double>(lineCount) / customTable.bucket_count;
 cout << "CustomHashtable Load Factor: " << loadFactor << endl;
 
 // Optionally, for std::unordered_map:
